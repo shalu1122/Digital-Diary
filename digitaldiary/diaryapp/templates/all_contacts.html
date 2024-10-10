@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% block title %}Digital diary{% endblock title %}
+{% block content %}
+<div class="container">
+
+
+
+  <div class="card mt-5">
+
+
+
+    <div class="card-body" style="    background: beige;">
+
+
+      {% for message in messages %}
+      <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
+      <a href="{% url 'add_contact' %}" class="btn btn-success my-2 my-sm-0 mr-5 mt-5">Add Contact</a>
+      <table class="table table-striped mt-5">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in contacts %}
+
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.mobile}}</td>
+            {% comment %} <td><a href="{% url 'view_contact' i.id %}" class="btn btn-success my-2 my-sm-0 mt-5">View</a> {% endcomment %}
+            <td><a href="{% url 'edit_contact' i.id %}" class="btn btn-success my-2 my-sm-0 mt-5">Edit</a>
+            <a href="{% url 'delete_contact' i.id %}" class="btn btn-danger my-2 my-sm-0 mt-5">Delete</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+{% endblock  %}
+
+ 

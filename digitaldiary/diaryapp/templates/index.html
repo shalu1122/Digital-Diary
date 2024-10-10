@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>{% block title %}{% endblock title %}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/offcanvas/">
+</head>
+<body style="background: aliceblue;">
+  <header>
+    <h1>Digital Diary</h1>
+  </header>
+  <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-secondary">
+    <a class="navbar-brand ml-5" href="{% url 'all_contacts'  %}">Digital diary</a>
+    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        {% comment %} <li class="nav-item active">
+          <a class="nav-link" href="{% url 'all_contacts'  %}">Dashboard <span class="sr-only">(current)</span></a>
+        </li> {% endcomment %}
+        {% comment %} <li class="nav-item">
+          <a class="nav-link" href="#">Notifications</a>
+        </li> {% endcomment %}
+        
+      </ul>
+        {{username}} <a href="{% url 'login' %}" class="btn btn-success my-2 my-sm-0 mr-5">Logout</a>
+      
+    </div>
+  </nav>
+
+    {% block content %}
+    {% endblock %}
+
+
+  <!-- Include Bootstrap JS files -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>
+

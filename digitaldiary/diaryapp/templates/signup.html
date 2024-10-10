@@ -1,0 +1,63 @@
+
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    <h2>Sign Up</h2>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="email">Name</label>
+        <input type="text" name="name" class="form-control" id="name" placeholder="Enter name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" class="form-control" id="email" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control" id="password" placeholder="Enter password" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Verify Password</label>
+        <input type="password" name="confirmpassword" class="form-control" id="confirmpassword" placeholder="Confirm password" onkeyup="checkPasswordMatch()" required>
+        <small id="passwordMatchError" class="form-text text-danger"></small>
+      </div>
+      <div class="text-center">
+      <button type="submit" id="submitBtn" class="btn btn-primary mb-2" disabled>Sign Up</button>
+      
+      </div>
+      <span class="mt-2">Already have an account? <a href="{% url 'login' %}">Login</a></span>
+    </form>
+   
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      // Disable the submit button onload
+      $('#submitBtn').prop('disabled', true);
+    });
+
+    function checkPasswordMatch() {
+      var password = $('#password').val();
+      var confirmPassword = $('#confirmpassword').val();
+      if (password !== confirmPassword) {
+        $('#passwordMatchError').text('Passwords do not match.');
+        $('#submitBtn').prop('disabled', true);
+      } else {
+        $('#passwordMatchError').text('');
+        $('#submitBtn').prop('disabled', false);
+      }
+    }
+  </script>
+{% endblock %}
+
+
