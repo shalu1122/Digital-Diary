@@ -34,7 +34,7 @@ def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-        print(f"username : {email}, password : {password}")
+        print(f"username of user : {email}, password : {password}")
         user = User.objects.filter(email=email, password=password).first()
         if not user:
             messages.error(request, 'User not found.')
